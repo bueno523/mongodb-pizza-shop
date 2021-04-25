@@ -2,21 +2,14 @@
 var mongoose = require('mongoose');
 
 var itemSchema = new mongoose.Schema({
-    topping:[{
         id: { type: Number, unique: true},
         name: { type: String, unique: true},
-        price: Number
-    }],
-    size: [{
-        id: { type: Number, unique: true},
-        name: { type: String, unique: true},
-        price: Number
-    }],
-    base: [{
-        id: { type: Number, unique: true},
-        name: { type: String, unique: true},
-        price: Number
-    }],
+        price: Number,
+        type: {
+            type: String,
+            enum: ['topping', 'size', 'base']
+        }
+
 })
 
-module.exports = mongoose.model('Item', orderSchema);
+module.exports = mongoose.model('Item', itemSchema);

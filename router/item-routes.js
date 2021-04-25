@@ -3,7 +3,7 @@ router = express.Router(),
 itemCtrl = require('../controllers/item-controller');
 
 router.post('/', itemCtrl.createItem);
-router.delete('/:id', itemCtrl.deleteItem);
+router.delete('/', itemCtrl.deleteItem);
 router.get('/', itemCtrl.getItems);
 router.put('/', itemCtrl.updateItem);
 

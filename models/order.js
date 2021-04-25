@@ -2,9 +2,10 @@
 var mongoose = require('mongoose');
 
 var orderSchema = new mongoose.Schema({
-    id: { type: Number, unique: true},
+    id: {type: Number, unique: true},
     size: String,
-    toppings: [{type: string}],
+    base: String,
+    toppings: [{type: String}],
     price: Number,
     address: String
 })

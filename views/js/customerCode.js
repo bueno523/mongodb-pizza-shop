@@ -2,28 +2,30 @@
 var totalPrice = 0;
 
 function loadItems(){
+    console.log('loading items was called')
     fetch('/items')
-    .then(res => res.json())
+    .then(res => {
+        console.log(res)
+        return res.json()
+    })
     .then(data => {
-        let sizes = data.items.size;
-        let toppings = data.items.topping;
-        let bases = data.items.base;
-        loadForm(sizes, 1);
-        loadForm(bases, 2);
-        loadForm(toppings, 3);
+        console.log('data retrieved at fetching /items');
+        console.log(data)
+        loadForm(data);
         addCheckBoxListener();
     });
 }
 
 
-function loadForm(data, position){
-    let elem;
-    if (position == '1') elem = document.getElementById('size');
-    if (position == '2') elem = document.getElementById('base');
-    if (position == '3') elem = document.getElementById('topping');
+function loadForm(data){
+    console.log(typeof data == 'undefined')
+    if(typeof data == 'undefined') return;
 
+    //load size, base and toppings from data
+    console.log(data)
     data.forEach(element => {
         if(element != null) {
+            console.log(element)
             let div = document.createElement('div');
             div.classList.add('checkbox');
             let input = document.createElement('input');
@@ -32,14 +34,18 @@ function loadForm(data, position){
             input.setAttribute('data-price', element.price);
             input.id = element.name
             input.value = element.name;
-            if(position=='1') input.name = 'size';
-            if(position=='2') input.name = 'base';
-            if(position=='3') input.name = 'topping';
+            input.name = element.type;
             
 
             label.for = element.name;
             label.innerText = element.name;
 
+            let elem;
+            //grabbing the correct elem
+            if (element.type == 'size') elem = document.getElementById('size');
+            if (element.type == 'base') elem = document.getElementById('base');
+            if (element.type == 'topping') elem = document.getElementById('topping');
+            
             div.appendChild(input);
             div.appendChild(label);
             elem.appendChild(div);

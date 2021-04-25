@@ -5,47 +5,25 @@ exports.getItems = async(req,res)=>{
    let itemsList= [];
    try{
     itemsList = await Item.find()
+    console.log('in item controller items list:')
+    console.log(itemsList)
+    res.setHeader('Content-type', 'text/json');
+    res.send(itemsList);
    }catch{
     console.log("Something happend at getting items")
     itemsList=[]
    }
-   //rendering index page, sending the fetched products
 };
 
 //create product function
 exports.createItem = async(req, res) =>{ 
-    const id = req.body.id;
-    const name = req.body.name;
-    const section = req.body.section;
-    const price = req.body.price;
 
-    if ( section=='base') {
-        var newItem = new Item({
-            base: {
-                id: id,
-                name: name,
-                price: price
-            }       
-        });
-    }
-    if ( section=='size') {
-        var newItem = new Item({
-            size: {
-                id: id,
-                name: name,
-                price: price
-            }       
-        });
-    }
-    if ( section=='topping') {
-        var newItem = new Item({
-            topping: {
-                id: id,
-                name: name,
-                price: price
-            }       
-        });
-    }
+    var newItem = new Item({
+        id: req.body.id,
+        name: req.body.name,
+        price: req.body.price,
+        type: req.body.type
+    });
 
     try{
         await newItem.save(); 
@@ -64,7 +42,7 @@ exports.createItem = async(req, res) =>{
 exports.deleteItem = async(req, res)=> {
     try{
         await Item.findByIdAndRemove(req.params.id)
-        console.log("trying to delete item with with id " + req.params.id);
+        console.log("Delete item with with id " + req.params.id);
         res.setHeader('Content-type', 'text/json');
         res.send({
             status: 200,
@@ -81,29 +59,15 @@ exports.deleteItem = async(req, res)=> {
 exports.updateItem = async(req, res)=> {
     try{
 
-        let newItem = await Product.findById(req.body.id);
-        let section = Object.keys(myObj)[0];
+        let newItem = await Item.findById(req.body.id);
+        let type = newItem.type;
 
-        if ( section=='base') {
-            newItem.base.id = req.body.id;
-            newItem.base.name = req.body.name;
-            newItem.base.section = req.body.section;
-            newItem.base.price = req.body.price;
-        }
-        if ( section=='size') {
-            newItem.size.id = req.body.id;
-            newItem.size.name = req.body.name;
-            newItem.size.section = req.body.section;
-            newItem.size.price = req.body.price;
-        }
-        if ( section=='topping') {
-            newItem.topping.id = req.body.id;
-            newItem.topping.name = req.body.name;
-            newItem.topping.section = req.body.section;
-            newItem.topping.price = req.body.price;
-        }
+        newItem.name = req.body.name;
+        newItem.type = req.body.type;
+        newItem.price = req.body.price;
 
         await newItem.save(); 
+        console.log('Item updated succesfully')
         res.send({
             status: 200,
             message: 'Item updated Successfully'
