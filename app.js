@@ -34,7 +34,7 @@ const ordersRouter = require('./router/order-routes')
 app.use('/items', itemsRouter);
 app.use('/orders', ordersRouter);
 
-server.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
+server.listen(port, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
 });
