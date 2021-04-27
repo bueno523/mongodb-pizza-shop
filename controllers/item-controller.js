@@ -41,8 +41,8 @@ exports.createItem = async(req, res) =>{
 //delete product function
 exports.deleteItem = async(req, res)=> {
     try{
-        await Item.findByIdAndRemove(req.params.id)
-        console.log("Delete item with with id " + req.params.id);
+        await Item.findByIdAndRemove(req.body.id)
+        console.log("Delete item with with id " + req.body.id);
         res.setHeader('Content-type', 'text/json');
         res.send({
             status: 200,

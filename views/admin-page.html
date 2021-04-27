@@ -15,10 +15,41 @@
 </head>
 
 <body>
+    <div class="orders-container">
+    <table id="tableOrders">
+        <h2 class="table-title">Orders</h2>
+        <thead>
+            <th scope="col" class="table-id">
+                Id
+            </th>
+            <th scope="col" class="section">
+                Size
+            </th>
+            <th scope="col">
+                Base
+            </th>
+            <th scope="col">
+                Toppings
+            </th>
+            <th scope="col">
+                Price
+            </th>
+            <th scope="col">
+                Address
+            </th>
+            <th scope="col"></th>
+        </thead>
+        <tbody id="tableBodySize">
+        </tbody>
+         
+    </table>
+    <a class="btn btn-info next-btn" href="customer-page.html">CUSTOMER PAGE</a>  
+</div>
+
     <div class="tables-container">
         <table id="tableSize">
             <h2 class="table-title">Sizes</h2>
-      <thead>
+            <thead>
              <th scope="col" class="table-id">
                 Id
             </th>
@@ -84,37 +115,6 @@
                 </tbody>
             </table>
   </div>
-<div class="orders-container">
-    <table id="tableOrders">
-        <h2 class="table-title">Orders</h2>
-        <thead>
-            <th scope="col" class="table-id">
-                Id
-            </th>
-            <th scope="col" class="section">
-                Size
-            </th>
-            <th scope="col">
-                Base
-            </th>
-            <th scope="col">
-                Toppings
-            </th>
-            <th scope="col">
-                Price
-            </th>
-            <th scope="col">
-                Address
-            </th>
-            <th scope="col"></th>
-        </thead>
-        <tbody id="tableBodySize">
-        </tbody>
-         
-    </table>
-    <a class="btn btn-info next-btn" href="customer-page.html">CUSTOMER PAGE</a>  
-</div>
-
   <!-- Bootstrap core JavaScript -->
   <script src="js/bootstrap.min.js"></script>
   <script type="module" src="js/adminCode.js"></script>

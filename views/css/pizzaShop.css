@@ -5,9 +5,13 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  display: flex;
   padding: 50px;
-  justify-content: space-evenly;
+}
+
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .center-page {
@@ -33,6 +37,11 @@ table, th, td {
      border: 1px solid #0651f3;
      text-align: center;
 }
+/* 
+#tableSize tr td:first-child {
+    max-width: 20px;
+    overflow: hidden;
+} */
 
 #tableOrders tr td:first-child {
     max-width: 20px;
